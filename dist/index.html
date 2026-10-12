@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PRU Blockchain Kulübü’nün gelir ve gider beyanları. Açık kayıtlar, görünür düzeltmeler.">
+  <title>AçıkKasa · Şeffaflık defteri</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./css/style.css">
+</head>
+<body data-page="public">
+  <header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="./index.html" aria-label="AçıkKasa ana sayfa"><span class="brand-mark">a<span>k</span></span><span>AçıkKasa<small>PRU BLOCKCHAIN KULÜBÜ</small></span></a>
+    <nav aria-label="Ana menü"><a class="nav-link active" href="./index.html">Şeffaflık defteri</a><a class="button button-outline button-small" href="./admin.html">Yönetim paneli <span aria-hidden="true">↗</span></a></nav>
+  </div></header>
+  <main class="shell">
+    <section class="hero">
+      <div><div class="eyebrow"><span class="tiny-line"></span> GÜVEN, AÇIKLIKLA BAŞLAR</div><h1>Her katkı görünür.<br>Her kayıt <em>açık.</em></h1><p class="hero-description">Kulübümüzün gelir ve giderlerini birlikte takip edin.<br class="desktop-only"> Kayıtları inceleyin, geçmişi görün, zincirden doğrulayın.</p></div>
+      <aside class="hero-note"><span class="note-icon" aria-hidden="true">◎</span><strong>Birlikte kuruyoruz.<br>Açıkça paylaşıyoruz.</strong><p>Üyelerimize ve destekçilerimize<br>karşı şeffaflık sözümüz.</p><span class="note-rule"></span><small>PRU BLOCKCHAIN KULÜBÜ</small></aside>
+    </section>
+    <div id="mode-banner" class="notice" role="status"></div>
+    <section class="balance-grid" aria-label="Kayıtlara göre mali özet">
+      <article class="balance-card"><div class="card-label"><span>Toplam gelir</span><span class="stat-icon income-icon" aria-hidden="true">↙</span></div><div class="stat-amount" id="total-income">—</div><div class="card-foot">Kulübe beyan edilen katkılar</div></article>
+      <article class="balance-card"><div class="card-label"><span>Toplam gider</span><span class="stat-icon expense-icon" aria-hidden="true">↗</span></div><div class="stat-amount" id="total-expense">—</div><div class="card-foot">Beyan edilen harcamalar</div></article>
+      <article class="balance-card balance-featured"><div class="card-label"><span>Kayıtlara göre kalan bakiye</span><span class="stat-icon" aria-hidden="true">◈</span></div><div class="stat-amount" id="total-balance">—</div><div class="card-foot"><span class="status-dot"></span> Banka bakiyesi doğrulaması değildir</div></article>
+    </section>
+    <section class="ledger-section" aria-labelledby="ledger-heading">
+      <div class="section-heading"><div><div class="eyebrow muted">AÇIK DEFTER</div><h2 id="ledger-heading">Kayıtların hikâyesi <span id="record-count" class="count-badge">0</span></h2></div><div class="section-actions"><button id="refresh" class="button button-outline button-small" type="button"><span aria-hidden="true">↻</span> Yenile</button><button id="export" class="button button-outline button-small" type="button">CSV indir <span aria-hidden="true">↓</span></button></div></div>
+      <div class="ledger-toolbar"><div class="tabs" role="group" aria-label="Kayıt türü"><button class="tab active" data-filter="all" aria-pressed="true">Tüm kayıtlar</button><button class="tab" data-filter="income" aria-pressed="false">Gelirler</button><button class="tab" data-filter="expense" aria-pressed="false">Giderler</button></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Kayıtlarda ara…" aria-label="Açıklama, kurum veya kategoride ara"></label></div>
+      <div class="ledger-table"><div class="table-head" aria-hidden="true"><span>KAYIT / AÇIKLAMA</span><span>KATEGORİ</span><span>KAYIT TARİHİ</span><span>TUTAR</span><span>DOĞRULAMA</span></div><div id="records" aria-live="polite"></div></div>
+      <div class="ledger-bottom"><span id="updated-at">Veriler hazırlanıyor…</span><span><span class="mini-lock" aria-hidden="true">◇</span> Geçmiş korunur. Düzeltmeler görünür.</span></div>
+    </section>
+    <section class="principles" aria-label="AçıkKasa nasıl çalışır"><article><span class="principle-number">01</span><h3>Herkese açık</h3><p>Kayıtları görmek için hesap veya cüzdan gerekmez.</p></article><article><span class="principle-number">02</span><h3>Geçmişi koruyan</h3><p>Düzeltme yeni bir kayıttır. Önceki beyan görünür kalır.</p></article><article><span class="principle-number">03</span><h3>Kaynağından doğrulanan</h3><p>Canlı kaydın işlemini Sepolia explorer’ında inceleyin.</p></article></section>
+    <div class="disclosure"><span aria-hidden="true">ⓘ</span><p>AçıkKasa yönetimin beyanlarını kaydeder. Bir kaydın zincirde bulunması, ödemenin gerçekten yapıldığını kanıtlamaz. Gerçek para bu uygulamada hareket etmez.</p><a href="./about.html">Nasıl çalışır? ↗</a></div>
+  </main>
+  <footer class="shell site-footer"><span>AçıkKasa <span class="footer-separator">/</span> Güven için açık kayıtlar.</span><div><span class="network-badge"><span class="status-dot"></span> Sepolia test ağı</span><a id="contract-link" href="./about.html">Sözleşme bilgisi ↗</a></div></footer>
+  <dialog id="record-dialog" class="record-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title">Kayıt ayrıntısı</h2><button id="close-dialog" class="icon-button" aria-label="Pencereyi kapat">×</button></div><div id="dialog-body"></div></dialog>
+  <script type="module" src="./js/public.js"></script>
+</body></html>
