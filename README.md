@@ -87,6 +87,8 @@ Tarayıcıda `http://127.0.0.1:4173` adresini açın. Sözleşme adresi boşken 
 
 ### Geliştirme, derleme ve test
 
+Paket yöneticisi pnpm 11.25.0 olarak sabitlenmiştir. Güvenlik testleri, giderilen bağımlılık bildirimleri ve MetaMask sınıflandırmasına ilişkin sınırlar [SECURITY-REPORT.md](SECURITY-REPORT.md) dosyasında bulunur. MetaMask siteyi kötü amaçlı olarak işaretliyorsa cüzdan işlemlerini durdurun; güvenlik korumasını kapatmayın.
+
 ```sh
 pnpm install --frozen-lockfile
 pnpm run compile

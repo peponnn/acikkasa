@@ -12,7 +12,7 @@ Solidity 0.8.30, optimizer 200, viaIR true, EVM Paris ile AcikKasa derlendi. Dep
 - `contract.test.mjs`: constructor, doğrudan yetkisiz çağrılar, event'ler, bakiye, düzeltme geçmişi, başarısız düzeltmenin geri alınması, yetki iptali, iki aşamalı devir, sayfalama ve sınırlar — 7 test geçti.
 - `chain.test.mjs`: gerçek frontend okuma modülü ile yerel RPC'den kayıtlar, düzeltmeler ve işlem hash'lerinin okunması; cüzdansız yeniden bağlantı — 1 test geçti.
 
-Toplam: 13 test. Sözleşme ve okuma entegrasyonu yerel Ganache üzerinde çalıştırıldı. Yerel test ağı Sepolia chain ID'sini kullanarak frontend ağ kontrolünü de denedi; bu ağ gerçek Sepolia değildir. Testte üretim config.js'i değiştirilmedi.
+İlk doğrulama: 13 test. Güvenlik incelemesinde 12 test daha eklendi; son çalıştırmada toplam **25 test geçti**, 0 başarısız ve 0 atlanan. Güvenlik kapsamı ve bağımlılık düzeltmeleri [SECURITY-REPORT.md](SECURITY-REPORT.md) içinde açıklanır. Sözleşme ve okuma entegrasyonu yerel Ganache üzerinde çalıştırıldı. Yerel test ağı Sepolia chain ID'sini kullanarak frontend ağ kontrolünü de denedi; bu ağ gerçek Sepolia değildir. Testte üretim config.js'i değiştirilmedi.
 
 ## Tarayıcı
 
