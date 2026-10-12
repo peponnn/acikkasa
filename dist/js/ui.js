@@ -6,8 +6,10 @@ export function node(tag, className, text) {
 }
 
 export function externalLink(label, url, className = '') {
+  const target = new URL(url);
+  if (target.protocol !== 'https:' || target.username || target.password) throw new Error('Güvenli HTTPS bağlantısı gerekli.');
   const link = node('a', className, label);
-  link.href = url;
+  link.href = target.href;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   return link;

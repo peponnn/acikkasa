@@ -1,7 +1,7 @@
 import { JsonRpcProvider, BrowserProvider, Contract, ContractFactory, FetchRequest, getAddress, isAddress } from '../vendor/ethers-6.17.0.min.js';
 import { CONFIG } from '../config.js';
 import { ABI, BYTECODE } from './contract-artifact.js';
-import { summarize } from './ledger.js';
+import { summarize, validateRecords } from './ledger.js';
 
 export const isConfigured = () => Boolean(CONFIG.contractAddress);
 let cachedReader;
@@ -55,6 +55,7 @@ export async function readLedger({ links = true } = {}) {
     const page = await contract.getRecords(offset, 50, opts);
     records.push(...page.map(plainRecord));
   }
+  validateRecords(records, count);
   const totals = summarize(records);
   if (totals.income !== income || totals.expense !== expense) throw new Error('Kayıtlar ile sözleşme toplamları uyuşmuyor. Yeniden deneyin.');
   let linkWarning = '';
@@ -129,6 +130,6 @@ export function explainError(error) {
   const names = { Unauthorized:'Bu cüzdanın işlem yetkisi yok.', AlreadyCorrected:'Bu kayıt zaten düzeltildi. Son geçerli kaydı seçin.', RecordNotFound:'Kayıt bulunamadı.', InvalidAmount:'Tutar geçersiz.', InvalidText:'Metin alanlarından biri boş veya çok uzun.', InvalidAddress:'Adres geçersiz ya da sözleşme sahibinin yetkisi kaldırılamaz.' };
   if (names[name]) return names[name];
   if (code === 'CALL_EXCEPTION') return 'Sözleşme işlemi kabul etmedi. Yetkiyi, tutarı ve düzeltilecek kaydı kontrol edin.';
-  if (code === 'NETWORK_ERROR' || code === 'TIMEOUT' || code === 'SERVER_ERROR') return 'Zincir bağlantısında sorun var. İşlemin durumunu explorer’dan kontrol edin.';
+  if (code === 'NETWORK_ERROR' || code === 'TIMEOUT' || code === 'SERVER_ERROR' || code === 'UNKNOWN_ERROR') return 'Zincir bağlantısında sorun var. İşlemin durumunu explorer’dan kontrol edin.';
   return error?.shortMessage || error?.message || 'İşlem tamamlanamadı. Yeniden deneyin.';
 }

@@ -3,6 +3,7 @@ export const MAX_AMOUNT = 1_000_000_000_000_000n;
 // The form accepts Turkish decimals, with optional correctly grouped thousands.
 export function parseTL(input) {
   let value = String(input).trim();
+  if (value.length > 64) throw new Error('Tutar çok uzun.');
   if (!/^(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{1,2})?$/.test(value)) {
     throw new Error('Tutarı 1500 veya 1.500,50 biçiminde girin. En fazla iki ondalık basamak kullanın.');
   }
@@ -45,6 +46,24 @@ export function summarize(records) {
   return { income, expense, balance: income - expense, replacedIds };
 }
 
+// Reject malformed RPC responses before traversing correction history in the UI.
+export function validateRecords(records, expectedCount = records.length) {
+  if (records.length !== expectedCount) throw new Error('Kayıt sayısı sözleşmeyle uyuşmuyor.');
+  const superseded = new Set();
+  for (let index = 0; index < records.length; index++) {
+    const r = records[index];
+    if (r.id !== index + 1 || ![0, 1].includes(r.kind) || typeof r.amount !== 'bigint'
+        || r.amount <= 0n || r.amount > MAX_AMOUNT || !Number.isSafeInteger(r.recordedAt)
+        || r.recordedAt < 0 || !Number.isSafeInteger(r.replacesId) || r.replacesId < 0
+        || r.replacesId >= r.id) throw new Error('Zincirden gelen kayıt biçimi geçersiz.');
+    if (r.replacesId) {
+      if (superseded.has(r.replacesId) || records[r.replacesId - 1].kind !== r.kind)
+        throw new Error('Zincirden gelen düzeltme geçmişi geçersiz.');
+      superseded.add(r.replacesId);
+    }
+  }
+}
+
 export function shortAddress(address) {
   return address ? `${address.slice(0, 6)}…${address.slice(-4)}` : '—';
 }
@@ -58,7 +77,7 @@ export function formatDate(timestamp) {
 export function exportCSV(records) {
   const totals = summarize(records);
   const cell = v => {
-    let text = String(v);
+    let text = String(v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
     // Prevent spreadsheet formula injection in exported free-text fields.
     if (/^[\s]*[=+@-]/.test(text)) text = `'${text}`;
     return `"${text.replaceAll('"', '""')}"`;
