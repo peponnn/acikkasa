@@ -1,6 +1,6 @@
 # Doğrulama kayıtları
 
-Tarih: 12 Ekim 2026. Bu dosya yerel geliştirme doğrulamasını anlatır; Sepolia deployment belgesi değildir.
+Tarih: 12 Ekim 2026. Yerel testler ile canlı Sepolia doğrulamaları aşağıda ayrı belirtilir.
 
 ## Derleme
 
@@ -22,8 +22,19 @@ Toplam: 13 test. Sözleşme ve okuma entegrasyonu yerel Ganache üzerinde çalı
 - Yönetim panelinin kurulum beklerken yazmayı kapatması ve MetaMask olmayan tarayıcıda açıklayıcı hata vermesi kontrol edildi.
 - JavaScript sözdizimi, yerel sayfa dosyaları ve Sepolia ayarları kontrol edildi.
 
+## Canlı Sepolia
+
+- Sözleşme: `0xd04337e7929625E1d0762Ae025cd637747d42c4a`, chain ID 11155111.
+- Kurulum bloğu 11899258: önceki blokta kod yok, bu blokta kod var.
+- Başarılı kurulum işlemi: `0x52d70ca5ed8834df8eb7038e3b5d9a7811365e58bc54124a85891f1bb5e6b2fe` (receipt status 1).
+- Zincirdeki runtime bytecode, aynı kaynak ve derleme ayarlarıyla üretilen kodla birebir eşleşti. Keccak256: `0xa6fbf6091a537226679964724781a41f69942d0ba5a23981b9d6f407a70cc1fe`.
+- Sahip ve yetkili yönetici: `0x2F46E8D1510606Ac7C1217DFF710dCc3356D00d5`.
+- 11899283 numaralı blokta ilk kontrol: 0 kayıt, 0 kuruş gelir, 0 kuruş gider. Bunlar kontrol anındaki değerlerdir.
+- Uygulamanın gerçek `readLedger()` modülü 11899290 numaralı blokta cüzdansız Sepolia okumasını tamamladı; boş kayıt listesi ve sıfır toplamlar sözleşmeyle tutarlıydı, bağlantı uyarısı yoktu.
+- İndirilen config.js çalıştırılmadı; yapılandırma veri olarak okunup doğrulandı. Uygulamanın mevcut güvenilir RPC ayarları korundu.
+
 ## Henüz doğrulanmayanlar
 
-Gerçek MetaMask imzasıyla Sepolia'ya kurulum, gerçek ağda kayıt/düzeltme ve fiziksel telefon testi.
+MetaMask ile gerçek ağda kayıt/düzeltme ve fiziksel telefon testi. Etherscan üzerinde kaynak kod yayımlama/doğrulaması yapılmadı.
 
-GitHub teslim reposu: https://github.com/peponnn/acikkasa. Kaynak yüklemesi sonrasında dosyalar yerel sürümle ayrıca karşılaştırılır.
+GitHub teslim reposu: https://github.com/peponnn/acikkasa. İlk kaynak yüklemesindeki 35 dosya yerel sürümle SHA256 üzerinden birebir karşılaştırıldı. Sonraki yapılandırma güncellemesi ayrıca kontrol edilir.

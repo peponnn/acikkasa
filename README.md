@@ -2,9 +2,9 @@
 
 **AçıkKasa** — PRU Blockchain Kulübü için açık gelir-gider beyan defteri.
 
-Kaynak kod: [peponnn/acikkasa](https://github.com/peponnn/acikkasa) · [Canlı önizleme](https://acikkasa-pru.genial-bow-6082.chatgpt.site)
+Kaynak kod: [peponnn/acikkasa](https://github.com/peponnn/acikkasa) · [Canlı site](https://acikkasa-pru.genial-bow-6082.chatgpt.site)
 
-Canlı önizleme şu anda açıkça işaretlenmiş örnek görünümde; Sepolia sözleşme kurulumu bekliyor.
+Site, Sepolia'daki [AçıkKasa sözleşmesine](https://sepolia.etherscan.io/address/0xd04337e7929625E1d0762Ae025cd637747d42c4a) bağlıdır. Kurulum, kaynak kodla birebir runtime bytecode eşleşmesi ve ilk yönetici yetkisi 12 Ekim 2026'da doğrulandı. İlk kontrolde defter boştu; yeni kayıtlar yönetici cüzdanıyla eklenir.
 
 ## 1. Problem
 
@@ -37,14 +37,14 @@ Ana kullanıcı akışı: yönetici MetaMask ile Sepolia'ya bağlanır → gelir
 - İşlem reddi, bekleme, yanlış ağ, yetkisizlik ve bağlantı hatası için durum mesajları.
 - MetaMask ile kurulum ekranı; başarılı kurulumdan sonra indirilebilir config.js.
 - Sözleşme derlemesi, yerel EVM testleri ve gerçek okuma modülü entegrasyon testi.
+- Sepolia'da kurulu sözleşme; canlı ağda kod, sahiplik, yönetici yetkisi ve defter okuma doğrulaması.
+- Herkese açık GitHub teslim reposu: [peponnn/acikkasa](https://github.com/peponnn/acikkasa).
 
-Bu özelliklerin blockchain davranışları **yerel Ganache EVM üzerinde doğrulandı**. Bu ifade canlı Sepolia kullanımının tamamlandığı anlamına gelmez.
+Kayıt ekleme, düzeltme ve yetki devri davranışları **yerel Ganache EVM üzerinde doğrulandı**. Sepolia kurulumu ve cüzdansız okuma ayrıca canlı ağda kontrol edildi. MetaMask ile kayıt/düzeltme akışı henüz kullanıcı tarafından tamamlanmadı.
 
 ### Yarım kalanlar / dış erişim bekleyenler
 
-- **Canlı Sepolia kurulumu:** yönetici cüzdanı belirli, fakat sözleşme henüz cüzdan sahibi tarafından imzalanıp yayımlanmadı. `dist/config.js` içindeki adres boştur. Açık sayfa açıkça işaretlenmiş iki kurgusal, salt okunur örnek gösterir; gerçek işlem linki üretmez.
-- **MetaMask üzerinden gerçek ağda yazma ve düzeltme:** cüzdan imzasıyla kurulumdan sonra uçtan uca kontrol edilmeli. Test cüzdanına erişim yokken başarılı gibi gösterilmez.
-- **Herkese açık GitHub teslim reposu:** [peponnn/acikkasa](https://github.com/peponnn/acikkasa). Sites'ın kaynak deposundan ayrı olarak kulübün inceleyebileceği kaynak kod burada paylaşılır.
+- **MetaMask üzerinden gerçek ağda yazma ve düzeltme:** kurulum tamamlandı; ilk gelir/gider ve düzeltme işlemi kullanıcı cüzdanıyla uçtan uca kontrol edilmeli. Başarılı işlem görülmeden tamamlandı diye sunulmaz.
 - İki kişinin isimleri ve gerçek görev paylaşımı ekibin bilgileriyle tamamlanmalı.
 
 ### Planlananlar
@@ -98,6 +98,8 @@ Ganache'nin bazı Node sürümlerinde µWS yerel modülü bulunmaz; JavaScript u
 
 ### Sepolia'ya kurulum — önerilen yol
 
+**Mevcut kulüp sözleşmesi zaten kurulu.** Bu site için yeniden kurulum yapmayın; yönetim panelinde MetaMask ile bağlanıp kayıt ekleyin. Aşağıdaki adımlar yalnızca ayrı bir sözleşme kurmak isteyenler içindir.
+
 1. MetaMask yüklü tarayıcıda `admin.html` açın. İlk yönetici adresi: `0x2F46E8D1510606Ac7C1217DFF710dCc3356D00d5`.
 2. Bu cüzdanda işlem ücreti için Sepolia test ETH bulunsun. Uygulama özel anahtar veya kurtarma kelimesi istemez.
 3. **MetaMask ile bağlan** seçin; gerekirse Sepolia'ya geçişi cüzdanda onaylayın.
@@ -125,8 +127,11 @@ Bu program Sepolia erişimini, adresteki sözleşmeyi ve ilk sahip adresini kont
 ## 7. Onchain kısım (varsa)
 
 - Ağ: **Ethereum Sepolia**, chain ID **11155111**.
-- Sözleşme adresi: **henüz kurulmadı**; gerçek adres config.js'e yazılınca bu bölüm güncellenmeli.
-- Explorer: `https://sepolia.etherscan.io` — henüz sözleşme bağlantısı yok.
+- Sözleşme adresi: [`0xd04337e7929625E1d0762Ae025cd637747d42c4a`](https://sepolia.etherscan.io/address/0xd04337e7929625E1d0762Ae025cd637747d42c4a).
+- Başlangıç bloğu: **11899258**.
+- Başarılı [kurulum işlemi](https://sepolia.etherscan.io/tx/0x52d70ca5ed8834df8eb7038e3b5d9a7811365e58bc54124a85891f1bb5e6b2fe).
+- İlk yönetici: `0x2F46E8D1510606Ac7C1217DFF710dCc3356D00d5`.
+- Kaynak koddan derlenen runtime bytecode ile zincirdeki kod birebir karşılaştırıldı. Bu kontrol, Etherscan üzerinde kaynak kodun yayımlanıp doğrulandığı anlamına gelmez.
 - Neden onchain: orijinal beyanların içeriğini değiştiren/silen işlev olmaması, yetkili yazanın görünmesi ve düzeltmelerin ayrı kayıtlarla incelenebilmesi.
 - Sözleşme proxy değildir; yöneticinin sözleşme kodunu yükseltme işlevi yoktur. Site başka bir sözleşmeye yönlendirilebilir; bu nedenle resmi adres README'de sabitlenmeli ve explorer'daki kaynak koduyla doğrulanmalıdır.
 - Gerçek ETH/token transferi ve banka entegrasyonu yoktur. Sepolia prototipi kalıcı muhasebe altyapısı diye sunulmaz.
