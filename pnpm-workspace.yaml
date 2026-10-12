@@ -1,0 +1,3 @@
+ignoredBuiltDependencies:
+  - bufferutil
+  - utf-8-validate
