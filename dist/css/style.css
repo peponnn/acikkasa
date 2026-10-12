@@ -1,15 +1,15 @@
 :root {
-  --paper:#f8f7f3;
+  --paper:#faf8fc;
   --white:#fff;
-  --ink:#202d26;
-  --muted:#727b73;
-  --line:#e4e6df;
-  --green:#173f34;
-  --green-light:#eaf1e8;
-  --accent:#dce8c8;
+  --ink:#191320;
+  --muted:#706778;
+  --line:#e9e1ee;
+  --green:#8d31bd;
+  --green-light:#f1e8f8;
+  --accent:#ecd9f8;
   --orange:#ad6d36;
   --red:#a04939;
-  --serif:Georgia,'Times New Roman',serif;
+  --serif:'Segoe UI',Arial,sans-serif;
   --sans:'Segoe UI',Arial,sans-serif
 }
 
@@ -1304,3 +1304,33 @@ to {
 
 }
 
+
+/* PRU reference theme: lavender canvas, purple accents and bold sans headings. */
+body {background-image:radial-gradient(ellipse at 90% 0%,#ead9f4 0,transparent 46%),linear-gradient(#8d31bd04 1px,transparent 1px),linear-gradient(90deg,#8d31bd04 1px,transparent 1px);background-size:auto,64px 64px,64px 64px}
+.site-header {background:#ffffffdd;backdrop-filter:blur(14px)}
+h1 {font-weight:800;letter-spacing:-2px}
+h1 em {font-style:normal;color:#8d31bd}
+.section-heading h2,.hero-note strong,.empty-state strong,.quiet-panel h3 {font-weight:750;letter-spacing:-.7px}
+.brand {font-weight:800}
+.brand-mark {border-radius:50%;background:linear-gradient(145deg,#a940d4,#632291);box-shadow:0 4px 15px #8d31bd26}
+.button {border-radius:14px}
+.button-primary {background:linear-gradient(135deg,#a23ccf,#852cb6);border-color:#9a39c7;box-shadow:0 5px 16px #8d31bd24;font-weight:700}
+.button-outline {border-color:#ded2e6;background:#ffffffb3}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible {outline-color:#a35ccc}
+.balance-card,.panel,.ledger-table,.record-dialog {border-color:#e7ddec;box-shadow:0 8px 28px #61318109;border-radius:20px}
+.balance-featured {background:linear-gradient(135deg,#983ac6,#662393);border-color:#8d31bd;color:#fff;box-shadow:0 12px 30px #8d31bd24}
+.balance-featured .card-label,.balance-featured .card-foot {color:#f1e2fa}
+.card-label {color:#71617e}
+.notice-live {background:#f3eafb;border-color:#e2cef0;color:#713093}
+.notice-info,.quiet-panel,.disclosure,.wallet-state,.address-block,.history-list li {background:#f1eaf7;color:#6c3a86}
+.tab.active,.count-badge {background:#eddef6;color:#7f2aaa}
+.table-head {background:#f5f0f8;color:#84708e}
+.tag {background:#f5eff9;color:#7b638a;border-color:#e8dbee}
+.corrected {background:#fcf9fe}
+.field input,.field select,.field textarea,select {background:#fdfbff;border-color:#e4d9ea}
+.search {border-color:#e4d9ea;border-radius:14px}
+.note-icon {color:#8d31bd;text-shadow:0 0 30px #b06fda66}
+.note-rule {background:#d9bee9}
+.principle-number {color:#9a72ae}
+.record-dialog::backdrop {background:#24112e60;backdrop-filter:blur(3px)}
+@media(max-width:640px) {h1 {letter-spacing:-1.4px}.balance-card,.panel,.ledger-table {border-radius:16px}}
