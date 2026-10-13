@@ -160,10 +160,7 @@ Kişisel bilgi veya belgeler zincire yüklenmez. Serbest metin kontrolü yöneti
 
 ## 10. Takım
 
-İki kişilik takım; **isimler ekip tarafından tamamlanmalı**.
+- **Kubilay Ç.** ([@Kubilay1876](https://github.com/Kubilay1876)): Fikir ve ürün tasarımı, README'nin ürün metinleri ve sunum ve Sepolia Kurulumu.
+- **Aykut A.** ([@peponnn](https://github.com/peponnn)): Geliştirme, sözleşmenin Sepolia'ya kurulumu ve sitenin yayına alınması.
 
-- Geliştirici: kod çalıştırma, doğrulama, cüzdanla deployment ve yayın.
-- Ürün sorumlusu/sunumcu: gerçek kulüp ihtiyacını doğrulama, README'nin ürün metinleri, sunum, telefon testi ve demo örnekleri.
-- Birlikte: sözleşmenin yetki, kuruş hesabı ve düzeltme mantığını açıklayabilme.
-
-Bu görevler planlanan dağılımdır; teslim öncesi gerçek katkılara göre güncellenmeli.
+Proje, PRU Blockchain Kulübü iç hackathonunda 4 proje arasından birinci oldu.
